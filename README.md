@@ -13,8 +13,8 @@ npm install --save @formio/contrib
 ## Usage
 
 ```javascript
-import FormioContrib from '@formio/contrib';
 import { Formio } from 'formiojs';
+import FormioContrib from '@formio/contrib';
 Formio.use(FormioContrib);
 ```
 
