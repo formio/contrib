@@ -1,0 +1,11 @@
+<table class="{{ ctx.tableClass }}">
+    <tbody>
+        {% for (let i = 0; i < ctx.component.numRows; i++) { %}
+            <tr>
+                {% for (let j = 0; j < ctx.component.numCols; j++) { %}
+                    <td>{{ ctx.renderCell(i, j) }}</td>
+                {% } %}
+            </tr>
+        {% } %}
+    </tbody>
+</table>
