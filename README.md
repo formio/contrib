@@ -13,9 +13,9 @@ npm install --save @formio/contrib
 ## Usage
 
 ```javascript
-import contrib from '@formio/contrib';
+import FormioContrib from '@formio/contrib';
 import { Formio } from 'formiojs';
-Formio.use(contrib);
+Formio.use(FormioContrib);
 ```
 
 You can also include this library within the DOM of your application like the following.
