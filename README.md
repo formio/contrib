@@ -30,6 +30,15 @@ You can also include this library within the DOM of your application like the fo
 </script>
 ```
 
+Or you can use the **formio-contrib.use.min.js** file which automatically adds the ```Formio.use``` method.
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
+<script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
+<script src="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.use.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.css">
+```
+
 ### Using within the Form.io Developer Portal
 It is also possible to inject custom components within the Form.io Developer Portal. This allows you to use the Developer Portal to create forms that include your custom components. Note: This currently only works with the Next portal @ https://next.form.io
 
