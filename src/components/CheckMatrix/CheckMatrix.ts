@@ -1,5 +1,5 @@
 /**
- * This file shows how to create a custom component and register that within an Angular application.
+ * This file shows how to create a custom component.
  *
  * Get the base component class by referencing Formio.Components.components map.
  */

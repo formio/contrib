@@ -1,6 +1,6 @@
 {
   "name": "@formio/contrib",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Contrib components for form.io",
   "main": "lib/index.js",
   "module": "node",
@@ -8,7 +8,11 @@
     "test:coverage": "nyc --reporter=text mocha --reporter spec './{,!(node_modules)/**/}*.spec.js'",
     "test": "mocha --require ts-node/register --reporter spec './{,!(node_modules)/**/}*.spec.ts'",
     "watch": "tsc -w",
-    "build": "tsc && gulp templates && webpack && webpack --config webpack.prod.js && node-sass ./src/sass/contrib.scss ./dist/formio-contrib.css",
+    "webpack:dev": "webpack",
+    "webpack:prod": "webpack --config webpack.prod.js",
+    "webpack:use": "webpack --config webpack.use.js",
+    "webpack": "npm run webpack:dev && npm run webpack:prod && npm run webpack:use",
+    "build": "tsc && gulp templates && npm run webpack && node-sass ./src/sass/contrib.scss ./dist/formio-contrib.css",
     "lint": "tslint -p .",
     "prepublish": "npm run build"
   },
@@ -35,13 +39,13 @@
   },
   "homepage": "https://github.com/formio/premium#readme",
   "peerDependencies": {
-    "formiojs": "^4.9.19"
+    "formiojs": "^4.9.20"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/ejs": "^3.0.2",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.13.0",
+    "@types/node": "^13.13.1",
     "@types/sinon": "^9.0.0",
     "chai": "^4.2.0",
     "gulp": "^4.0.2",
@@ -53,7 +57,7 @@
     "nyc": "^15.0.1",
     "pre-commit": "^1.2.2",
     "sinon": "^9.0.2",
-    "ts-node": "^8.8.2",
+    "ts-node": "^8.9.0",
     "ts-sinon": "^1.2.0",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3",
