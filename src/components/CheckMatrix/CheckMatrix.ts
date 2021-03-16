@@ -51,6 +51,10 @@ export default class CheckMatrix extends (FieldComponent as any) {
     return tableClass;
   }
 
+  get empty() {
+    return [];
+  }
+
   renderCell(row, col) {
     return this.renderTemplate('input', {
       input: {
