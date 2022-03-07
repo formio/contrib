@@ -32,7 +32,7 @@ export default class CheckMatrix extends (FieldComponent as any) {
 
   public static editForm = editForm;
 
-  static builderInfo = {
+  static get builderInfo = {
     title: 'Check Matrix',
     group: 'basic',
     icon: 'fa fa-table',
