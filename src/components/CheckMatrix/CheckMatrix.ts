@@ -51,7 +51,7 @@ export default class CheckMatrix extends (FieldComponent as any) {
     return tableClass;
   }
 
-  get empty() {
+  get emptyValue() {
     return [];
   }
 
