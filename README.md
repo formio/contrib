@@ -21,10 +21,10 @@ Formio.use(FormioContrib);
 You can also include this library within the DOM of your application like the following.
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
-<script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
-<script src="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.css">
+<link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+<script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+<script src="https://cdn.form.io/@formio/contrib/formio-contrib.min.js"></script>
+<link rel="stylesheet" href="https://cdn.form.io/@formio/contrib/formio-contrib.css">
 <script type="text/javascript">
     Formio.use(FormioContrib);
 </script>
@@ -33,10 +33,10 @@ You can also include this library within the DOM of your application like the fo
 Or you can use the **formio-contrib.use.min.js** file which automatically adds the ```Formio.use``` method.
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
-<script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
-<script src="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.use.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@formio/contrib@latest/dist/formio-contrib.css">
+<link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+<script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+<script src="https://cdn.form.io/@formio/contrib/formio-contrib.use.min.js"></script>
+<link rel="stylesheet" href="https://cdn.form.io/@formio/contrib/formio-contrib.css">
 ```
 
 ### Using within the Form.io Developer Portal
