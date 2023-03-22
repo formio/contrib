@@ -37,7 +37,7 @@ export default class ImageDrawComponent extends FileComponent {
             drawpad: 'multiple'
         });
         if (this.refs.drawpad && this.refs.drawpad.length) {
-            const ctx = this.refs.drawpad[0].getContext("2d");
+            const ctx = this.refs.drawpad[0].getContext('2d');
             ctx.beginPath();
             ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
             ctx.moveTo(110, 75);

@@ -9,7 +9,7 @@ declare const CheckMatrix_base: any;
  * @constructor
  */
 export default class CheckMatrix extends CheckMatrix_base {
-    checks: Array<Array<any>>;
+    checks: any[][];
     constructor(component: any, options: any, data: any);
     static schema(): any;
     static editForm: typeof editForm;
@@ -22,8 +22,9 @@ export default class CheckMatrix extends CheckMatrix_base {
         schema: any;
     };
     get tableClass(): string;
-    renderCell(row: any, col: any): any;
-    render(children: any): any;
+    get emptyValue(): any[];
+    render(): any;
+    refKey(i: any, j: any): string;
     /**
      * After the html string has been mounted into the dom, the dom element is returned here. Use refs to find specific
      * elements to attach functionality to.
@@ -44,6 +45,6 @@ export default class CheckMatrix extends CheckMatrix_base {
      * @param value
      * @returns {boolean}
      */
-    setValue(value: any): boolean;
+    setValue(value: any): void;
 }
 export {};

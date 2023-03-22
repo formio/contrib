@@ -3,7 +3,11 @@
         {% for (let i = 0; i < ctx.component.numRows; i++) { %}
             <tr>
                 {% for (let j = 0; j < ctx.component.numCols; j++) { %}
-                    <td>{{ ctx.renderCell(i, j) }}</td>
+                    <td>
+                        <div class="form-check">
+                            <input ref="{{ ctx.component.key }}-{{ i }}-{{ j }}" class="form-check-input" type="checkbox">
+                        </div>
+                    </td>
                 {% } %}
             </tr>
         {% } %}

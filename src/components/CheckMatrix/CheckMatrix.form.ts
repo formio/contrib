@@ -1,4 +1,5 @@
-import nestedComponentForm from 'formiojs/components/_classes/nested/NestedComponent.form';
+import { Components } from 'formiojs';
+const nestedComponentForm = (Components.components.nested as any).editForm;
 import CheckMatrixEditDisplay from './editForm/CheckMatrix.edit.display';
 export default function(...extend) {
   return nestedComponentForm([

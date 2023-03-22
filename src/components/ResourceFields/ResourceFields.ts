@@ -64,15 +64,15 @@ export default class ResourceFieldsComponent extends NestedComponent {
             components: [
               {
                 input: true,
-                label: "Transform Data",
-                key: "transform",
-                placeholder: "/** Example Code **/\ndata = submission.data;",
+                label: 'Transform Data',
+                key: 'transform',
+                placeholder: '/** Example Code **/\ndata = submission.data;',
                 rows: 8,
-                defaultValue: "",
+                defaultValue: '',
                 persistent: true,
-                editor: "ace",
-                type: "textarea",
-                description: "Available variables are submission and data (data is already transformed by simple mappings)."
+                editor: 'ace',
+                type: 'textarea',
+                description: 'Available variables are submission and data (data is already transformed by simple mappings).'
               }
             ]
           }
@@ -90,7 +90,7 @@ export default class ResourceFieldsComponent extends NestedComponent {
       return;
     }
     Formio.request(`${Formio.getProjectUrl()}/form/${this.data.resource}`).then((result) => {
-      const dynamicFields: any = this.getComponent('dynamic');
+      const dynamicFields: any = this.root.getComponent('dynamic');
       dynamicFields.destroyComponents();
       const formFields = [{
         value: 'data',

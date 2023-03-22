@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "preserveConstEnums": true,
     "outDir": "lib",
     "noImplicitAny": false,
     "sourceMap": false,
     "declaration": true,
     "rootDir": "src",
-    "module": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
     "lib": [
-      "es2015",
+      "es2020",
       "dom"
     ]
   },
