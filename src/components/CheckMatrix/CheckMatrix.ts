@@ -3,7 +3,7 @@
  *
  * Get the base component class by referencing Formio.Components.components map.
  */
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 const FieldComponent = (Components as any).components.field;
 import editForm from './CheckMatrix.form';
 

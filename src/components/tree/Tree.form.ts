@@ -1,4 +1,4 @@
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 const componentEditForm = (Components.components as any).component.editForm;
 import TreeEditData from './editForm/Tree.edit.data';
 import TreeDisplayData from './editForm/Tree.edit.display';
