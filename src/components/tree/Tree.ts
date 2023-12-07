@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Node from './Node';
 import NativePromise from 'native-promise-only';
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 import editForm from './Tree.form';
 
 const NestedDataComponent = (Components.components as any).nesteddata;
