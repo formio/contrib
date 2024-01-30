@@ -1,0 +1,20 @@
+.tree {
+  &__level {
+    &_even {
+      background-color: #f6f6f6;
+    }
+  }
+
+  &__node-content {
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+  }
+
+  &__node-children {
+    margin: 0;
+  }
+}
+
+.tree-listgroup {
+  flex-direction: row;
+}

@@ -1,4 +1,4 @@
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 const FileComponent = (Components as any).components.file;
 
 export default class ImageDrawComponent extends FileComponent {
