@@ -1,7 +1,6 @@
 # Form.io contrib components library
 
-This module contains contributed components for use with Form.io. It also serves as a good example on how you can
-create your very own custom components library that can be used with Form.io platform.
+This module contains contributed components for use with Form.io. Any code within this library should be considered examples, which may be outdated. While these serve as an example for how components have been extended, it is not intended for use within a runtime application. 
 
 ## Installation
 To install this library, do the following.
