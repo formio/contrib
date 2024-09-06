@@ -1,4 +1,4 @@
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 const SelectComponent = (Components.components as any).select;
 import editForm from './Resource.form';
 
