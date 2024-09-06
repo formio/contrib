@@ -1,4 +1,4 @@
-import { Components } from 'formiojs';
+import { Components } from '@formio/js';
 import ResourceEditDisplay from './editForm/Resource.edit.display';
 
 export default function(...extend) {

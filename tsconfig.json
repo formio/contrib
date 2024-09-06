@@ -9,6 +9,7 @@
     "rootDir": "src",
     "module": "commonjs",
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "lib": [
       "es2020",
       "dom"

@@ -12,6 +12,6 @@ module.exports = {
   mode: 'development',
   performance: { hints: false },
   externals: {
-    formiojs: 'Formio'
+    '@formio/js': 'Formio'
   }
 };

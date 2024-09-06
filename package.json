@@ -38,10 +38,10 @@
   },
   "homepage": "https://github.com/formio/premium#readme",
   "peerDependencies": {
-    "formiojs": "^4.14.12"
+    "@formio/js": "^5.0.0-rc.76"
   },
   "devDependencies": {
-    "@formio/js": "^5.0.0-rc.33",
+    "@formio/js": "5.0.0-rc.76",
     "@types/chai": "^4.2.11",
     "@types/ejs": "^3.0.2",
     "@types/mocha": "^10.0.1",
