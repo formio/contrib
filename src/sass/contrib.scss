@@ -18,3 +18,41 @@
 .tree-listgroup {
   flex-direction: row;
 }
+
+.dynamicWizard-listgroup {
+
+  .list-group-card {
+    padding: 0;
+
+    list-style-type: none;
+
+    @media (max-width: 568px) {
+      .list-group-item.list-group-subheader {
+        .row {
+          justify-content: space-between;
+
+          .col-sm-2 {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .list-group-field {
+    list-style-type: none;
+  }
+}
+
+.dynamicWizard-changingMode {
+  .formio-component {
+    display: none;
+  }
+  .formio-component.formio-component-dynamicWizard {
+    display: block;
+
+    .formio-component {
+      display: block;
+    }
+  }
+}
