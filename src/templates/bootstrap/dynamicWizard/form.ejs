@@ -1,0 +1,86 @@
+<div class="dynamicWizard-listgroup list-group
+    {{ ctx.component.striped ? 'table-striped' : ''}}
+    {{ ctx.component.bordered ? 'table-bordered' : ''}}
+    {{ ctx.component.hover ? 'table-hover' : ''}}
+    {{ ctx.component.condensed ? 'table-sm' : ''}}
+    "
+    role="grid"
+    aria-labelledby="l-{{ctx.instance.id}}-{{ctx.component.key}} 
+    {% if (ctx.component.description) { %}d-{{ctx.instance.id}}-{{ctx.component.key}}{% } %}"
+>
+  {% if (ctx.readOnly || !ctx.isChangingMode || ctx.isDisabled) { %}
+  {% if (ctx.header) { %}
+  <div role="presentation" class="list-group-item list-group-header">
+    {{ctx.header}}
+  </div>
+  {% } %}
+  {% ctx.rows.forEach(function(row, rowIndex) { %}
+  <div role="presentation" class="list-group-card" ref="{{ctx.ref.row}}">
+    {{row}}
+    <div class="has-error">
+      <div class="dynamicWizard-row-error help-block">
+        {{ctx.errors[rowIndex]}}
+      </div>
+    </div>
+  </div>
+  {% }) %}
+  {% if (ctx.footer) { %}
+  <div class="list-group-item list-group-footer">
+    {{ctx.footer}}
+  </div>
+  {% } %}
+  {% } else { %}
+  <div class="list-group-field" ref="{{ctx.ref.row}}">
+    {{ ctx.currentComponent }}
+  </div>
+  {% } %}
+</div>
+{% if (!ctx.readOnly && !ctx.isBlocking) { %}
+{% if (!ctx.isChangingMode) { %}
+{% if (ctx.hasAddButton) { %}
+  <p>Would you like to add another?</p>
+  <button class="btn btn-primary"
+    ref="{{ctx.ref.agreeButton}}"
+    aria-label="Add Another Entry"
+  >
+    {{ctx.t('Add another')}}
+  </button>
+{% } %}
+{% } else { %}
+<div class="list-inline" id="{{ ctx.dynamicWizardKey }}-nav">
+  {% if (ctx.buttons.cancel) { %}
+  <div class="list-inline-item">
+    <button class="btn btn-secondary btn-wizard-nav-cancel"
+      aria-label="Cancel button. Click to reset entry"
+      ref="{{ctx.dynamicWizardKey}}-cancel"
+    >
+    {{ctx.t('cancel')}}
+    </button>
+  </div>
+  {% } %}
+  {% if (ctx.buttons.previous) { %}
+  <div class="list-inline-item">
+    <button class="btn btn-primary btn-wizard-nav-previous"
+      aria-label="Previous button. Click to go back to the previous component"
+      ref="{{ctx.dynamicWizardKey}}-previous"
+    >
+      {{ctx.t('previous')}}
+    </button>
+  </div>
+  {% } %}
+  {% if (ctx.buttons.next) { %}
+  <div class="list-inline-item">
+    <button class="btn btn-primary btn-wizard-nav-next" 
+      ref="{{ctx.dynamicWizardKey}}-next"
+      aria-label="Next button. Click to go to the next component"
+    >
+      {{ctx.t('next')}}
+    </button>
+  </div>
+  {% } %}
+</div>
+{% } %}
+{% } %}
+{% if (ctx.options.vpat) { %}
+<span class="sr-only" aria-live="assertive" ref="dWizardLiveRegion"></span>
+{% } %}
