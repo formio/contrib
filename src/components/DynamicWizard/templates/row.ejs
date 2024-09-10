@@ -1,0 +1,31 @@
+<div class="list-group-item">
+  <div class="list-group-subheader">
+    <div class="row">
+      <div class="col-sm-2">
+        User {{ rowIndex + 1 }}
+      </div>
+      {% if (!ctx.self.options.readOnly) { %}
+      <div class="col-sm-2">
+        <div class="btn-group pull-right">
+          <button class="btn btn-default btn-light btn-sm editCard"><i class="{{ ctx.iconClass('edit') }}"></i></button>
+          <button class="btn btn-danger btn-sm removeCard"><i class="{{ ctx.iconClass('trash') }}"></i></button>
+        </div>
+      </div>
+      {% } %}
+    </div>
+  </div>
+  {% ctx.util.eachComponent(ctx.components, function(component) { %}
+  {% if ((!component.hasOwnProperty('tableView') || component.tableView) && ctx.isVisibleInRow(component)) { %}
+  <div class="row">
+    <div class="col-sm-2">
+      {{ component.key }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      {{ ctx.getView(component, ctx.row[component.key]) }}
+    </div>
+  </div>
+  {% } %}
+  {% }) %}
+</div>
