@@ -37,7 +37,7 @@ export default class CheckMatrix extends (FieldComponent as any) {
     group: 'basic',
     icon: 'fa fa-table',
     weight: 70,
-    documentation: 'http://help.form.io/userguide/#table',
+    documentation: 'developers/form-development/custom-components#checkmatrix',
     schema: CheckMatrix.schema()
   }
 
