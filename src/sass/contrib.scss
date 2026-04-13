@@ -56,3 +56,117 @@
     }
   }
 }
+
+.irc-grid {
+  display: grid;
+  gap: 14px;
+  padding: 2px;
+
+  &--cols-1 { grid-template-columns: 1fr; }
+  &--cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &--cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  &[data-image-fit="contain"] .irc-card__image-wrap img {
+    object-fit: contain;
+  }
+}
+
+.irc-card {
+  position: relative;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: #adb5bd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &:has(input:checked) {
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px #28a745, 0 2px 8px rgba(40, 167, 69, 0.25);
+  }
+
+  &:has(input:checked):hover {
+    border-color: #28a745;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  &__image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  &__label {
+    padding: 8px 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    color: #212529;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &--text-only .irc-card__label {
+    padding: 16px 14px;
+    white-space: normal;
+    text-align: left;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+}
+
+.irc-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 2px 0;
+
+  &__indicator {
+    font-size: 0.8125rem;
+    color: #6c757d;
+  }
+
+  button {
+    padding: 5px 14px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+    color: #495057;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
