@@ -202,7 +202,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst components_1 = __webpack_require__(/*! ./components */ \"./lib/components/index.js\");\nconst templates_1 = __webpack_require__(/*! ./templates */ \"./lib/templates/index.js\");\nexports[\"default\"] = {\n    components: components_1.default,\n    templates: templates_1.default\n};\n\n\n//# sourceURL=webpack://FormioContrib/./lib/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst components_1 = __webpack_require__(/*! ./components */ \"./lib/components/index.js\");\nconst templates_1 = __webpack_require__(/*! ./templates */ \"./lib/templates/index.js\");\nexports[\"default\"] = {\n    // Declare a \"Custom Components\" group in the form builder sidebar.\n    // Components that set `group: 'custom'` in their builderInfo (e.g.\n    // CardComponent) will appear under this category.\n    options: {\n        builder: {\n            builder: {\n                custom: {\n                    title: 'Custom Components',\n                    weight: 10,\n                    components: {},\n                },\n            },\n        },\n    },\n    components: components_1.default,\n    templates: templates_1.default,\n};\n\n\n//# sourceURL=webpack://FormioContrib/./lib/index.js?");
 
 /***/ }),
 

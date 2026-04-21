@@ -1,4 +1,15 @@
 declare const _default: {
+    options: {
+        builder: {
+            builder: {
+                custom: {
+                    title: string;
+                    weight: number;
+                    components: {};
+                };
+            };
+        };
+    };
     components: {
         cardComponent: typeof import("./components/CardComponent/CardComponent").default;
         checkmatrix: typeof import("./components/CheckMatrix/CheckMatrix").default;
