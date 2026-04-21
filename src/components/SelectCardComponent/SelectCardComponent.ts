@@ -1,5 +1,5 @@
 import { Components } from '@formio/js';
-import editForm from './CardComponent.form';
+import editForm from './SelectCardComponent.form';
 
 const RadioComponent = (Components as any).components.radio;
 const BaseComponent = (Components as any).components.component;
@@ -43,7 +43,7 @@ function getNestedProperty(obj: any, path: string): any {
   return current;
 }
 
-export default class CardComponent extends (RadioComponent as any) {
+export default class SelectCardComponent extends (RadioComponent as any) {
   public currentPage: number = 0;
   public pageSize: number = 0;
   public resizeObserver: ResizeObserver | null = null;
@@ -51,9 +51,9 @@ export default class CardComponent extends (RadioComponent as any) {
 
   static schema(...extend: any[]) {
     return RadioComponent.schema({
-      type: 'cardComponent',
-      label: 'Card Component',
-      key: 'cardComponent',
+      type: 'selectCardComponent',
+      label: 'Select Cards',
+      key: 'selectCardComponent',
       inputType: 'radio',
       values: [{ label: '', value: '', imageUrl: '' }],
       cardColumns: 3,
@@ -65,18 +65,18 @@ export default class CardComponent extends (RadioComponent as any) {
 
   static get builderInfo() {
     return {
-      title: 'Card Component',
+      title: 'Select Cards',
       group: 'basic',
       icon: 'picture-o',
       weight: 30,
-      schema: CardComponent.schema(),
+      schema: SelectCardComponent.schema(),
     };
   }
 
   static editForm = editForm;
 
   get defaultSchema() {
-    return CardComponent.schema();
+    return SelectCardComponent.schema();
   }
 
   init() {
@@ -118,7 +118,7 @@ export default class CardComponent extends (RadioComponent as any) {
     // renderTemplate('radio', ...), which would discard our grid HTML. Call
     // the base Component.render directly, which accepts `children` and wraps
     // them with the component chrome (label, errors, etc.).
-    return BaseComponent.prototype.render.call(this, this.renderTemplate('cardComponent', {
+    return BaseComponent.prototype.render.call(this, this.renderTemplate('selectCardComponent', {
       component: this.component,
       items: pageItems,
       currentPage: this.currentPage || 0,

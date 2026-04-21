@@ -1,10 +1,10 @@
-import cardComponent from './CardComponent/CardComponent';
 import checkmatrix from './CheckMatrix/CheckMatrix';
 import resource from './resource/Resource';
+import selectCardComponent from './SelectCardComponent/SelectCardComponent';
 import tree from './tree/Tree';
 export default {
-  cardComponent,
   checkmatrix,
   resource,
+  selectCardComponent,
   tree,
 };

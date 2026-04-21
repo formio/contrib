@@ -1,6 +1,6 @@
-import editForm from './CardComponent.form';
-declare const CardComponent_base: any;
-export default class CardComponent extends CardComponent_base {
+import editForm from './SelectCardComponent.form';
+declare const SelectCardComponent_base: any;
+export default class SelectCardComponent extends SelectCardComponent_base {
     currentPage: number;
     pageSize: number;
     resizeObserver: ResizeObserver | null;

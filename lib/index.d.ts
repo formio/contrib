@@ -1,8 +1,8 @@
 declare const _default: {
     components: {
-        cardComponent: typeof import("./components/CardComponent/CardComponent").default;
         checkmatrix: typeof import("./components/CheckMatrix/CheckMatrix").default;
         resource: typeof import("./components/resource/Resource").default;
+        selectCardComponent: typeof import("./components/SelectCardComponent/SelectCardComponent").default;
         tree: typeof import("./components/tree/Tree").default;
     };
     templates: {
@@ -13,10 +13,10 @@ declare const _default: {
             treeEdit: {
                 form: string;
             };
-            cardComponent: {
+            checkmatrix: {
                 form: string;
             };
-            checkmatrix: {
+            selectCardComponent: {
                 form: string;
             };
             tree: {

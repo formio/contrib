@@ -1,11 +1,11 @@
-import cardComponent from './cardComponent';
 import checkmatrix from './checkmatrix';
+import selectCardComponent from './selectCardComponent';
 import tree from './tree';
 import treePartials from './tree/partials';
 
 export default {
-  cardComponent,
   checkmatrix,
+  selectCardComponent,
   tree,
   ...treePartials,
 };
