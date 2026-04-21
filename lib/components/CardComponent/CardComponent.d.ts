@@ -1,6 +1,6 @@
-import editForm from './ImageRadioCard.form';
-declare const ImageRadioCard_base: any;
-export default class ImageRadioCard extends ImageRadioCard_base {
+import editForm from './CardComponent.form';
+declare const CardComponent_base: any;
+export default class CardComponent extends CardComponent_base {
     currentPage: number;
     pageSize: number;
     resizeObserver: ResizeObserver | null;

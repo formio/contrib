@@ -39,78 +39,78 @@
   display: block;
 }
 
-.irc-grid {
+.cc-grid {
   display: grid;
-  gap: var(--irc-gap, 14px);
+  gap: var(--cc-gap, 14px);
   padding: 2px;
 }
-.irc-grid--cols-1 {
+.cc-grid--cols-1 {
   grid-template-columns: 1fr;
 }
-.irc-grid--cols-2 {
+.cc-grid--cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
-.irc-grid--cols-3 {
+.cc-grid--cols-3 {
   grid-template-columns: repeat(3, 1fr);
 }
-.irc-grid--cols-4 {
+.cc-grid--cols-4 {
   grid-template-columns: repeat(4, 1fr);
 }
-.irc-grid[data-image-fit=contain] .irc-card__image-wrap img {
+.cc-grid[data-image-fit=contain] .cc-card__image-wrap img {
   object-fit: contain;
 }
 
-.irc-card {
+.cc-card {
   position: relative;
-  border: var(--irc-border-width, 2px) solid var(--irc-border, #dee2e6);
-  border-radius: var(--irc-radius, 6px);
+  border: var(--cc-border-width, 2px) solid var(--cc-border, #dee2e6);
+  border-radius: var(--cc-radius, 6px);
   cursor: pointer;
   overflow: hidden;
-  background: var(--irc-card-bg, #fff);
-  transition: var(--irc-transition, border-color 0.15s ease, box-shadow 0.15s ease);
+  background: var(--cc-card-bg, #fff);
+  transition: var(--cc-transition, border-color 0.15s ease, box-shadow 0.15s ease);
 }
-.irc-card:hover {
-  border-color: var(--irc-border-hover, #adb5bd);
-  box-shadow: var(--irc-shadow-hover, 0 2px 8px rgba(0, 0, 0, 0.08));
+.cc-card:hover {
+  border-color: var(--cc-border-hover, #adb5bd);
+  box-shadow: var(--cc-shadow-hover, 0 2px 8px rgba(0, 0, 0, 0.08));
 }
-.irc-card:has(input:checked) {
-  border-color: var(--irc-border-selected, #28a745);
-  box-shadow: 0 0 0 var(--irc-ring-selected-width, 2px) var(--irc-ring-selected, #28a745), 0 2px 8px var(--irc-glow-selected, rgba(40, 167, 69, 0.25));
+.cc-card:has(input:checked) {
+  border-color: var(--cc-border-selected, #28a745);
+  box-shadow: 0 0 0 var(--cc-ring-selected-width, 2px) var(--cc-ring-selected, #28a745), 0 2px 8px var(--cc-glow-selected, rgba(40, 167, 69, 0.25));
 }
-.irc-card:has(input:checked):hover {
-  border-color: var(--irc-border-selected, #28a745);
+.cc-card:has(input:checked):hover {
+  border-color: var(--cc-border-selected, #28a745);
 }
-.irc-card__input {
+.cc-card__input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
   width: 0;
   height: 0;
 }
-.irc-card__image-wrap {
+.cc-card__image-wrap {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: var(--irc-image-bg, #f8f9fa);
-  border-bottom: 1px solid var(--irc-image-border, #eee);
+  background: var(--cc-image-bg, #f8f9fa);
+  border-bottom: 1px solid var(--cc-image-border, #eee);
 }
-.irc-card__image-wrap img {
+.cc-card__image-wrap img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
 }
-.irc-card__label {
+.cc-card__label {
   padding: 8px 10px;
   font-size: 0.875rem;
   font-weight: 500;
   text-align: center;
-  color: var(--irc-label-color, #212529);
+  color: var(--cc-label-color, #212529);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.irc-card--text-only .irc-card__label {
+.cc-card--text-only .cc-card__label {
   padding: 16px 14px;
   white-space: normal;
   text-align: left;
@@ -118,31 +118,31 @@
   line-height: 1.5;
 }
 
-.irc-pagination {
+.cc-pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 2px 0;
 }
-.irc-pagination__indicator {
+.cc-pagination__indicator {
   font-size: 0.8125rem;
-  color: var(--irc-pagination-color, #6c757d);
+  color: var(--cc-pagination-color, #6c757d);
 }
-.irc-pagination button {
+.cc-pagination button {
   padding: 5px 14px;
-  border: 1px solid var(--irc-pagination-btn-border, #dee2e6);
-  border-radius: var(--irc-radius, 4px);
-  background: var(--irc-pagination-btn-bg, #fff);
-  color: var(--irc-pagination-btn-color, #495057);
+  border: 1px solid var(--cc-pagination-btn-border, #dee2e6);
+  border-radius: var(--cc-radius, 4px);
+  background: var(--cc-pagination-btn-bg, #fff);
+  color: var(--cc-pagination-btn-color, #495057);
   cursor: pointer;
   font-size: 0.8125rem;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.irc-pagination button:hover:not(:disabled) {
-  background: var(--irc-pagination-btn-bg-hover, #e9ecef);
-  border-color: var(--irc-pagination-btn-border-hover, #adb5bd);
+.cc-pagination button:hover:not(:disabled) {
+  background: var(--cc-pagination-btn-bg-hover, #e9ecef);
+  border-color: var(--cc-pagination-btn-border-hover, #adb5bd);
 }
-.irc-pagination button:disabled {
+.cc-pagination button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }

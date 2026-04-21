@@ -6,10 +6,10 @@ declare const _default: {
         treeEdit: {
             form: string;
         };
-        checkmatrix: {
+        cardComponent: {
             form: string;
         };
-        imageRadioCard: {
+        checkmatrix: {
             form: string;
         };
         tree: {

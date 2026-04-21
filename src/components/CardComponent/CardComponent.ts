@@ -1,5 +1,5 @@
 import { Components } from '@formio/js';
-import editForm from './ImageRadioCard.form';
+import editForm from './CardComponent.form';
 
 const RadioComponent = (Components as any).components.radio;
 const BaseComponent = (Components as any).components.component;
@@ -43,7 +43,7 @@ function getNestedProperty(obj: any, path: string): any {
   return current;
 }
 
-export default class ImageRadioCard extends (RadioComponent as any) {
+export default class CardComponent extends (RadioComponent as any) {
   public currentPage: number = 0;
   public pageSize: number = 0;
   public resizeObserver: ResizeObserver | null = null;
@@ -51,9 +51,9 @@ export default class ImageRadioCard extends (RadioComponent as any) {
 
   static schema(...extend: any[]) {
     return RadioComponent.schema({
-      type: 'imageRadioCard',
-      label: 'Image Radio Card',
-      key: 'imageRadioCard',
+      type: 'cardComponent',
+      label: 'Card Component',
+      key: 'cardComponent',
       inputType: 'radio',
       values: [{ label: '', value: '', imageUrl: '' }],
       cardColumns: 3,
@@ -65,18 +65,18 @@ export default class ImageRadioCard extends (RadioComponent as any) {
 
   static get builderInfo() {
     return {
-      title: 'Image Radio Card',
-      group: 'basic',
+      title: 'Card Component',
+      group: 'custom',
       icon: 'picture-o',
       weight: 30,
-      schema: ImageRadioCard.schema(),
+      schema: CardComponent.schema(),
     };
   }
 
   static editForm = editForm;
 
   get defaultSchema() {
-    return ImageRadioCard.schema();
+    return CardComponent.schema();
   }
 
   init() {
@@ -118,7 +118,7 @@ export default class ImageRadioCard extends (RadioComponent as any) {
     // renderTemplate('radio', ...), which would discard our grid HTML. Call
     // the base Component.render directly, which accepts `children` and wraps
     // them with the component chrome (label, errors, etc.).
-    return BaseComponent.prototype.render.call(this, this.renderTemplate('imageRadioCard', {
+    return BaseComponent.prototype.render.call(this, this.renderTemplate('cardComponent', {
       component: this.component,
       items: pageItems,
       currentPage: this.currentPage || 0,
@@ -237,7 +237,7 @@ export default class ImageRadioCard extends (RadioComponent as any) {
         const colCount = width >= BREAKPOINT_WIDE
           ? (this.component.cardColumns || 3)
           : (this.component.cardColumnsSmall || 2);
-        cardGrid.className = cardGrid.className.replace(/irc-grid--cols-\d/g, 'irc-grid--cols-' + colCount);
+        cardGrid.className = cardGrid.className.replace(/cc-grid--cols-\d/g, 'cc-grid--cols-' + colCount);
         const newPageSize = colCount * colCount;
         if (newPageSize !== this.pageSize) {
           this.pageSize = newPageSize;

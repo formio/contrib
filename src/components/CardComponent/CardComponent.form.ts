@@ -1,6 +1,6 @@
 import { Components } from '@formio/js';
-import ImageRadioCardEditData from './editForm/ImageRadioCard.edit.data';
-import ImageRadioCardEditDisplay from './editForm/ImageRadioCard.edit.display';
+import CardComponentEditData from './editForm/CardComponent.edit.data';
+import CardComponentEditDisplay from './editForm/CardComponent.edit.display';
 
 const radioEditForm = (Components as any).components.radio.editForm;
 
@@ -33,8 +33,8 @@ function addImageUrlColumnToValuesGrid(dataTab: any): void {
 
 export default function(...extend: any[]) {
   const form = radioEditForm([
-    { key: 'data', components: ImageRadioCardEditData },
-    { key: 'display', components: ImageRadioCardEditDisplay },
+    { key: 'data', components: CardComponentEditData },
+    { key: 'display', components: CardComponentEditDisplay },
   ], ...extend);
 
   // Post-process: modify the inherited values datagrid to add imageUrl column

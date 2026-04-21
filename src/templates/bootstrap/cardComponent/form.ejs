@@ -1,4 +1,4 @@
-<div class="irc-grid irc-grid--cols-{{ ctx.cardColumnsSmall }}"
+<div class="cc-grid cc-grid--cols-{{ ctx.cardColumnsSmall }}"
      ref="cardGrid"
      data-cols="{{ ctx.cardColumns }}"
      data-cols-small="{{ ctx.cardColumnsSmall }}"
@@ -9,33 +9,33 @@
        var serialized = ctx.serializeValue(item.value);
        var label = item.label || '';
   %}
-    <div class="irc-card{% if (selected) { %} irc-card--selected{% } %}{% if (!hasImage) { %} irc-card--text-only{% } %}"
+    <div class="cc-card{% if (selected) { %} cc-card--selected{% } %}{% if (!hasImage) { %} cc-card--text-only{% } %}"
          ref="wrapper"
          data-value="{{ serialized }}">
       <input type="radio"
              ref="input"
-             class="irc-card__input"
+             class="cc-card__input"
              {{ ctx.inputAttrs }}
              value="{{ serialized }}"
              id="{{ ctx.instanceId }}-{{ ctx.componentKey }}-{{ serialized }}"
              {% if (selected) { %}checked{% } %}
              role="radio">
       {% if (hasImage) { %}
-        <div class="irc-card__image-wrap">
+        <div class="cc-card__image-wrap">
           <img src="{{ item.imageUrl }}" alt="{{ label }}">
         </div>
       {% } %}
-      <div class="irc-card__label">{{ label }}</div>
+      <div class="cc-card__label">{{ label }}</div>
     </div>
   {% }); %}
 </div>
 
 {% if (ctx.totalPages > 1) { %}
-  <div class="irc-pagination">
+  <div class="cc-pagination">
     <button type="button" ref="prevButton"{% if (ctx.currentPage <= 0) { %} disabled{% } %}>
       {{ ctx.chevronLeft }}Prev
     </button>
-    <span class="irc-pagination__indicator" ref="pageIndicator">
+    <span class="cc-pagination__indicator" ref="pageIndicator">
       {{ ctx.currentPage + 1 }} / {{ ctx.totalPages }}
     </span>
     <button type="button" ref="nextButton"{% if (ctx.currentPage >= ctx.totalPages - 1) { %} disabled{% } %}>
