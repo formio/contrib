@@ -3,5 +3,5 @@
 node_modules
 npm-debug.log
 *~
-lib
-dist
+# lib/ and dist/ are committed on this fork so they can be served via
+# jsDelivr and consumed by downstream apps (see README).
