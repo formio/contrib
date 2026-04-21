@@ -2,6 +2,7 @@ import { Components } from '@formio/js';
 import editForm from './ImageRadioCard.form';
 
 const RadioComponent = (Components as any).components.radio;
+const BaseComponent = (Components as any).components.component;
 
 const PLACEHOLDER_SVG =
   'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 ' +
@@ -113,7 +114,11 @@ export default class ImageRadioCard extends (RadioComponent as any) {
   render() {
     const allItems = this.getVisibleItems();
     const pageItems = this.getPageItems(allItems);
-    return super.render(this.renderTemplate('imageRadioCard', {
+    // Skip RadioComponent.render — it takes no argument and always calls
+    // renderTemplate('radio', ...), which would discard our grid HTML. Call
+    // the base Component.render directly, which accepts `children` and wraps
+    // them with the component chrome (label, errors, etc.).
+    return BaseComponent.prototype.render.call(this, this.renderTemplate('imageRadioCard', {
       component: this.component,
       items: pageItems,
       currentPage: this.currentPage || 0,
