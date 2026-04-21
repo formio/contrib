@@ -66,7 +66,7 @@ export default class CardComponent extends (RadioComponent as any) {
   static get builderInfo() {
     return {
       title: 'Card Component',
-      group: 'custom',
+      group: 'basic',
       icon: 'picture-o',
       weight: 30,
       schema: CardComponent.schema(),
