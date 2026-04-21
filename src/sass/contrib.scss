@@ -57,9 +57,41 @@
   }
 }
 
+//
+// Image Radio Card — themeable design tokens.
+//
+// Every color, radius, and dimension below is exposed as a CSS custom
+// property with a fallback, so downstream apps can override the look
+// without specificity fights or !important. Set the token at any level
+// (:root, .formio-form, .irc-grid, etc.) and it cascades.
+//
+// Token reference:
+//   --irc-gap                    grid gap between cards
+//   --irc-radius                 card corner radius
+//   --irc-border-width           card border width
+//   --irc-transition             card transition timing
+//   --irc-card-bg                card background
+//   --irc-border                 card border color (idle)
+//   --irc-border-hover           card border color on hover
+//   --irc-shadow-hover           card shadow on hover
+//   --irc-border-selected        card border color when selected
+//   --irc-ring-selected          card ring color when selected (outer box-shadow)
+//   --irc-ring-selected-width    card ring thickness when selected
+//   --irc-glow-selected          card soft glow color when selected
+//   --irc-image-bg               image wrap background
+//   --irc-image-border           image wrap bottom divider
+//   --irc-label-color            label text color
+//   --irc-pagination-color       pagination indicator color
+//   --irc-pagination-btn-color   pagination button text color
+//   --irc-pagination-btn-border  pagination button border
+//   --irc-pagination-btn-bg      pagination button background
+//   --irc-pagination-btn-bg-hover  pagination button hover background
+//   --irc-pagination-btn-border-hover  pagination button hover border
+//
+
 .irc-grid {
   display: grid;
-  gap: 14px;
+  gap: var(--irc-gap, 14px);
   padding: 2px;
 
   &--cols-1 { grid-template-columns: 1fr; }
@@ -74,25 +106,27 @@
 
 .irc-card {
   position: relative;
-  border: 2px solid #dee2e6;
-  border-radius: 6px;
+  border: var(--irc-border-width, 2px) solid var(--irc-border, #dee2e6);
+  border-radius: var(--irc-radius, 6px);
   cursor: pointer;
   overflow: hidden;
-  background: #fff;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: var(--irc-card-bg, #fff);
+  transition: var(--irc-transition, border-color 0.15s ease, box-shadow 0.15s ease);
 
   &:hover {
-    border-color: #adb5bd;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-color: var(--irc-border-hover, #adb5bd);
+    box-shadow: var(--irc-shadow-hover, 0 2px 8px rgba(0, 0, 0, 0.08));
   }
 
   &:has(input:checked) {
-    border-color: #28a745;
-    box-shadow: 0 0 0 2px #28a745, 0 2px 8px rgba(40, 167, 69, 0.25);
+    border-color: var(--irc-border-selected, #28a745);
+    box-shadow:
+      0 0 0 var(--irc-ring-selected-width, 2px) var(--irc-ring-selected, #28a745),
+      0 2px 8px var(--irc-glow-selected, rgba(40, 167, 69, 0.25));
   }
 
   &:has(input:checked):hover {
-    border-color: #28a745;
+    border-color: var(--irc-border-selected, #28a745);
   }
 
   &__input {
@@ -107,8 +141,8 @@
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #f8f9fa;
-    border-bottom: 1px solid #eee;
+    background: var(--irc-image-bg, #f8f9fa);
+    border-bottom: 1px solid var(--irc-image-border, #eee);
 
     img {
       width: 100%;
@@ -123,7 +157,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     text-align: center;
-    color: #212529;
+    color: var(--irc-label-color, #212529);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -146,22 +180,22 @@
 
   &__indicator {
     font-size: 0.8125rem;
-    color: #6c757d;
+    color: var(--irc-pagination-color, #6c757d);
   }
 
   button {
     padding: 5px 14px;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    background: #fff;
-    color: #495057;
+    border: 1px solid var(--irc-pagination-btn-border, #dee2e6);
+    border-radius: var(--irc-radius, 4px);
+    background: var(--irc-pagination-btn-bg, #fff);
+    color: var(--irc-pagination-btn-color, #495057);
     cursor: pointer;
     font-size: 0.8125rem;
     transition: background 0.15s ease, border-color 0.15s ease;
 
     &:hover:not(:disabled) {
-      background: #e9ecef;
-      border-color: #adb5bd;
+      background: var(--irc-pagination-btn-bg-hover, #e9ecef);
+      border-color: var(--irc-pagination-btn-border-hover, #adb5bd);
     }
 
     &:disabled {
