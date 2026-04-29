@@ -137,7 +137,14 @@ export default class SelectCardComponent extends (RadioComponent as any) {
   }
 
   getVisibleItems(): any[] {
-    const allItems = this.loadedOptions || this.component.values || [];
+    // ListComponent initializes loadedOptions to [] (truthy empty array) and
+    // early-returns from updateItems() when component.data is absent — which
+    // happens for inline `values` configurations. A plain `||` would lock us
+    // onto that empty array and never fall through to component.values, so
+    // gate on length to mirror plain Radio's behavior in that mode.
+    const allItems = (this.loadedOptions && this.loadedOptions.length > 0)
+      ? this.loadedOptions
+      : (this.component.values || []);
     const filterOn = this.component.filterOn;
     const filterProperty = this.component.filterProperty;
 
