@@ -59,7 +59,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
       cardColumns: 3,
       cardColumnsSmall: 2,
       imageFit: 'cover',
-      imageProperty: 'data.imageUrl',
+      imageProperty: 'image',
     }, ...extend);
   }
 
