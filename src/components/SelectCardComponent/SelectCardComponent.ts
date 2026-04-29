@@ -147,7 +147,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     // directly — otherwise the preview/render is empty when the form
     // hasn't picked a filter value (e.g. for insurance cards which use
     // values mode without filterOn configured anyway).
-    if (filterOn && filterProperty && this._rawItems.length > 0 && this.root) {
+    if (filterOn && filterProperty && this._rawItems && this._rawItems.length > 0 && this.root) {
       const submissionData = this.root.submission ? this.root.submission.data : {};
       const filterValue = getNestedProperty(submissionData, filterOn);
       // Filter is configured but the watched field is empty — show
