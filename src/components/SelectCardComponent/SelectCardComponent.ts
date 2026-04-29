@@ -59,7 +59,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
       cardColumns: 3,
       cardColumnsSmall: 2,
       imageFit: 'cover',
-      imageProperty: 'image',
+      imageProperty: 'data.imageUrl',
     }, ...extend);
   }
 
@@ -144,16 +144,20 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     if (filterOn && filterProperty && this._rawItems && this.root) {
       const submissionData = this.root.submission ? this.root.submission.data : {};
       const filterValue = getNestedProperty(submissionData, filterOn);
-      if (filterValue) {
-        const filteredItems: any[] = [];
-        for (let i = 0; i < allItems.length; i++) {
-          const rawItem = this._rawItems[i];
-          if (rawItem && String(getNestedProperty(rawItem, filterProperty)) === String(filterValue)) {
-            filteredItems.push(allItems[i]);
-          }
-        }
-        return filteredItems;
+      // Filter is configured but the watched field is empty — show
+      // nothing until the user picks a value, instead of dumping every
+      // item below an empty filter.
+      if (!filterValue) {
+        return [];
       }
+      const filteredItems: any[] = [];
+      for (let i = 0; i < allItems.length; i++) {
+        const rawItem = this._rawItems[i];
+        if (rawItem && String(getNestedProperty(rawItem, filterProperty)) === String(filterValue)) {
+          filteredItems.push(allItems[i]);
+        }
+      }
+      return filteredItems;
     }
 
     return allItems;
