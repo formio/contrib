@@ -52,7 +52,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
   static schema(...extend: any[]) {
     return RadioComponent.schema({
       type: 'selectCardComponent',
-      label: 'Select Cards',
+      label: 'Radio Cards',
       key: 'selectCardComponent',
       inputType: 'radio',
       values: [{ label: '', value: '', imageUrl: '' }],
@@ -65,7 +65,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
 
   static get builderInfo() {
     return {
-      title: 'Select Cards',
+      title: 'Radio Cards',
       group: 'basic',
       icon: 'picture-o',
       weight: 30,
