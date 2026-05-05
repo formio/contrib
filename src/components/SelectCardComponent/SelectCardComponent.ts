@@ -185,17 +185,28 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     const allItems = this.getAllItems();
     const filterOn = this.component.filterOn;
     const filterProperty = this.component.filterProperty;
-    // Filter only applies to URL-sourced components that have actually
-    // received items via setItems(). In values mode, _rawItems is never
-    // populated; skip the filter so inline values render unconditionally.
-    if (!filterOn || !filterProperty || !this._rawItems || this._rawItems.length === 0 || !this.root) {
+
+    // No filter configured (values-mode insurance, plain URL list, etc.) —
+    // render every item.
+    if (!filterOn || !filterProperty) {
       return allItems.map((_: any, i: number) => i);
     }
+
+    // Filter IS configured. We need raw items + root to apply it. If
+    // either isn't available, render nothing rather than returning all
+    // indices — Form.io's super.setItems doesn't clear loadedOptions on
+    // an empty refetch, so "show everything" would surface stale items
+    // from a previous successful fetch instead of an honest empty state.
+    if (!this._rawItems || this._rawItems.length === 0 || !this.root) {
+      return [];
+    }
+
     const submissionData = this.root.submission ? this.root.submission.data : {};
     const filterValue = getNestedProperty(submissionData, filterOn);
     // Filter is configured but the watched field is empty — show
     // nothing until the user picks a value.
     if (!filterValue) return [];
+
     const matches: number[] = [];
     for (let i = 0; i < allItems.length; i++) {
       const rawItem = this._rawItems[i];
