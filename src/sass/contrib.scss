@@ -170,6 +170,13 @@
     font-size: 0.9375rem;
     line-height: 1.5;
   }
+
+  // Pagination/filter visibility — render every card always so refs.input
+  // stays index-aligned with loadedOptions for Form.io's Radio internals,
+  // and hide off-page or filter-mismatching cards via CSS.
+  &--hidden {
+    display: none;
+  }
 }
 
 .cc-pagination {

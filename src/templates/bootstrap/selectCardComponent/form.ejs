@@ -8,8 +8,9 @@
        var hasImage = !!item.imageUrl;
        var serialized = ctx.serializeValue(item.value);
        var label = item.label || '';
+       var hidden = !item._visible;
   %}
-    <div class="cc-card{% if (selected) { %} cc-card--selected{% } %}{% if (!hasImage) { %} cc-card--text-only{% } %}"
+    <div class="cc-card{% if (selected) { %} cc-card--selected{% } %}{% if (!hasImage) { %} cc-card--text-only{% } %}{% if (hidden) { %} cc-card--hidden{% } %}"
          ref="wrapper"
          data-value="{{ serialized }}">
       <input type="radio"

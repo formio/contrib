@@ -112,19 +112,48 @@ export default class SelectCardComponent extends (RadioComponent as any) {
   }
 
   render() {
-    const allItems = this.getVisibleItems();
-    const pageItems = this.getPageItems(allItems);
+    const allItems = this.getAllItems();
+    const matchingIndices = this.getMatchingIndices();
+
+    const cardColumnsSmall = this.component.cardColumnsSmall || 2;
+    const pageSize = this.pageSize > 0 ? this.pageSize : (cardColumnsSmall * cardColumnsSmall);
+    if (this.pageSize <= 0) {
+      this.pageSize = pageSize;
+    }
+
+    const totalPages = pageSize > 0 ? (Math.ceil(matchingIndices.length / pageSize) || 1) : 1;
+    let currentPage = this.currentPage || 0;
+    if (currentPage >= totalPages) {
+      currentPage = Math.max(0, totalPages - 1);
+      this.currentPage = currentPage;
+    }
+
+    // Render every item in the source array so refs.input stays
+    // index-aligned with loadedOptions. Form.io's Radio.attach and
+    // Radio.getValue address loadedOptions[domIndex] using the DOM
+    // input's position in refs.input — slicing the rendered set for
+    // pagination would silently corrupt that lookup (page 2 card 2
+    // would save as loadedOptions[1], i.e. page 1 card 2). Pagination
+    // and filter become CSS visibility concerns instead.
+    const visibleIndexSet = new Set(
+      matchingIndices.slice(currentPage * pageSize, (currentPage + 1) * pageSize),
+    );
+    const annotatedItems = allItems.map((item: any, i: number) => ({
+      ...item,
+      _visible: visibleIndexSet.has(i),
+    }));
+
     // Skip RadioComponent.render — it takes no argument and always calls
     // renderTemplate('radio', ...), which would discard our grid HTML. Call
     // the base Component.render directly, which accepts `children` and wraps
     // them with the component chrome (label, errors, etc.).
     return BaseComponent.prototype.render.call(this, this.renderTemplate('selectCardComponent', {
       component: this.component,
-      items: pageItems,
-      currentPage: this.currentPage || 0,
-      totalPages: this.getTotalPages(allItems),
+      items: annotatedItems,
+      currentPage,
+      totalPages,
       cardColumns: this.component.cardColumns || 3,
-      cardColumnsSmall: this.component.cardColumnsSmall || 2,
+      cardColumnsSmall,
       imageFit: this.component.imageFit || 'cover',
       instanceId: this.id,
       componentKey: this.component.key || '',
@@ -136,64 +165,51 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     }));
   }
 
-  getVisibleItems(): any[] {
-    // Two distinct sources depending on configured data source:
-    //   url mode   → loadedOptions, populated asynchronously by setItems()
-    //   values mode → component.values at the top level (Radio's convention)
-    // Don't fall back across modes: if URL mode hasn't loaded yet,
-    // returning component.values would surface the schema's placeholder
-    // default ([{label:'',value:''}]) as a blank card.
+  /**
+   * Returns the full source items array — every loadedOption (URL mode)
+   * or every inline value. Used as the canonical iteration target for
+   * render so refs.input.length always equals loadedOptions.length.
+   */
+  getAllItems(): any[] {
     const isUrlMode = this.component.dataSrc === 'url';
-    const allItems = isUrlMode
-      ? (this.loadedOptions || [])
-      : (this.component.values || []);
+    return isUrlMode ? (this.loadedOptions || []) : (this.component.values || []);
+  }
+
+  /**
+   * Returns absolute indices into getAllItems() that match the configured
+   * filter (or every index if no filter is configured). Pagination math
+   * and visibility annotations use these indices; the DOM render itself
+   * still iterates every item.
+   */
+  getMatchingIndices(): number[] {
+    const allItems = this.getAllItems();
     const filterOn = this.component.filterOn;
     const filterProperty = this.component.filterProperty;
-
-    // Filter logic only applies to URL data sources where we've actually
-    // received raw items from setItems(). In values mode, _rawItems is
-    // never populated, so skip the filter and return the inline values
-    // directly — otherwise the preview/render is empty when the form
-    // hasn't picked a filter value (e.g. for insurance cards which use
-    // values mode without filterOn configured anyway).
-    if (filterOn && filterProperty && this._rawItems && this._rawItems.length > 0 && this.root) {
-      const submissionData = this.root.submission ? this.root.submission.data : {};
-      const filterValue = getNestedProperty(submissionData, filterOn);
-      // Filter is configured but the watched field is empty — show
-      // nothing until the user picks a value, instead of dumping every
-      // item below an empty filter.
-      if (!filterValue) {
-        return [];
-      }
-      const filteredItems: any[] = [];
-      for (let i = 0; i < allItems.length; i++) {
-        const rawItem = this._rawItems[i];
-        if (rawItem && String(getNestedProperty(rawItem, filterProperty)) === String(filterValue)) {
-          filteredItems.push(allItems[i]);
-        }
-      }
-      return filteredItems;
+    // Filter only applies to URL-sourced components that have actually
+    // received items via setItems(). In values mode, _rawItems is never
+    // populated; skip the filter so inline values render unconditionally.
+    if (!filterOn || !filterProperty || !this._rawItems || this._rawItems.length === 0 || !this.root) {
+      return allItems.map((_: any, i: number) => i);
     }
-
-    return allItems;
+    const submissionData = this.root.submission ? this.root.submission.data : {};
+    const filterValue = getNestedProperty(submissionData, filterOn);
+    // Filter is configured but the watched field is empty — show
+    // nothing until the user picks a value.
+    if (!filterValue) return [];
+    const matches: number[] = [];
+    for (let i = 0; i < allItems.length; i++) {
+      const rawItem = this._rawItems[i];
+      if (rawItem && String(getNestedProperty(rawItem, filterProperty)) === String(filterValue)) {
+        matches.push(i);
+      }
+    }
+    return matches;
   }
 
-  getPageItems(items: any[]): any[] {
+  getTotalPages(): number {
     const cardColumnsSmall = this.component.cardColumnsSmall || 2;
     const pageSize = this.pageSize > 0 ? this.pageSize : (cardColumnsSmall * cardColumnsSmall);
-    if (this.pageSize <= 0) {
-      this.pageSize = pageSize;
-    }
-
-    const currentPage = this.currentPage || 0;
-    const startIndex = currentPage * pageSize;
-    return items.slice(startIndex, startIndex + pageSize);
-  }
-
-  getTotalPages(items: any[]): number {
-    const cardColumnsSmall = this.component.cardColumnsSmall || 2;
-    const pageSize = this.pageSize > 0 ? this.pageSize : (cardColumnsSmall * cardColumnsSmall);
-    return pageSize > 0 ? Math.ceil(items.length / pageSize) || 1 : 1;
+    return pageSize > 0 ? (Math.ceil(this.getMatchingIndices().length / pageSize) || 1) : 1;
   }
 
   attach(element: HTMLElement) {
@@ -238,8 +254,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     }
     if (this.refs.nextButton) {
       this.addEventListener(this.refs.nextButton, 'click', () => {
-        const items = this.getVisibleItems();
-        const totalPages = this.getTotalPages(items);
+        const totalPages = this.getTotalPages();
         if (this.currentPage < totalPages - 1) {
           this.currentPage++;
           this.redraw();
