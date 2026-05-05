@@ -173,9 +173,12 @@
 
   // Pagination/filter visibility — render every card always so refs.input
   // stays index-aligned with loadedOptions for Form.io's Radio internals,
-  // and hide off-page or filter-mismatching cards via CSS.
+  // and hide off-page or filter-mismatching cards via CSS. !important
+  // because consuming apps frequently set `.cc-card { display: flex }`
+  // (a higher-specificity selector like `.formio-form .cc-card`) and
+  // would otherwise resurrect hidden cards from the cascade.
   &--hidden {
-    display: none;
+    display: none !important;
   }
 }
 

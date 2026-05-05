@@ -118,7 +118,7 @@
   line-height: 1.5;
 }
 .cc-card--hidden {
-  display: none;
+  display: none !important;
 }
 
 .cc-pagination {
