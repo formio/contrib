@@ -1,10 +1,10 @@
 import checkmatrix from './CheckMatrix/CheckMatrix';
+import radiocard from './RadioCard/RadioCard';
 import resource from './resource/Resource';
-import selectCardComponent from './SelectCardComponent/SelectCardComponent';
 import tree from './tree/Tree';
 export default {
   checkmatrix,
+  radiocard,
   resource,
-  selectCardComponent,
   tree,
 };

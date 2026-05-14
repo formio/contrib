@@ -1,5 +1,5 @@
 import { Components } from '@formio/js';
-import editForm from './SelectCardComponent.form';
+import editForm from './RadioCard.form';
 
 const RadioComponent = (Components as any).components.radio;
 const BaseComponent = (Components as any).components.component;
@@ -43,7 +43,7 @@ function getNestedProperty(obj: any, path: string): any {
   return current;
 }
 
-export default class SelectCardComponent extends (RadioComponent as any) {
+export default class RadioCard extends (RadioComponent as any) {
   public currentPage: number = 0;
   public pageSize: number = 0;
   public resizeObserver: ResizeObserver | null = null;
@@ -51,9 +51,9 @@ export default class SelectCardComponent extends (RadioComponent as any) {
 
   static schema(...extend: any[]) {
     return RadioComponent.schema({
-      type: 'selectCardComponent',
+      type: 'radiocard',
       label: 'Radio Cards',
-      key: 'selectCardComponent',
+      key: 'radiocard',
       inputType: 'radio',
       values: [{ label: '', value: '', imageUrl: '' }],
       cardColumns: 3,
@@ -69,14 +69,14 @@ export default class SelectCardComponent extends (RadioComponent as any) {
       group: 'basic',
       icon: 'picture-o',
       weight: 30,
-      schema: SelectCardComponent.schema(),
+      schema: RadioCard.schema(),
     };
   }
 
   static editForm = editForm;
 
   get defaultSchema() {
-    return SelectCardComponent.schema();
+    return RadioCard.schema();
   }
 
   init() {
@@ -147,7 +147,7 @@ export default class SelectCardComponent extends (RadioComponent as any) {
     // renderTemplate('radio', ...), which would discard our grid HTML. Call
     // the base Component.render directly, which accepts `children` and wraps
     // them with the component chrome (label, errors, etc.).
-    return BaseComponent.prototype.render.call(this, this.renderTemplate('selectCardComponent', {
+    return BaseComponent.prototype.render.call(this, this.renderTemplate('radiocard', {
       component: this.component,
       items: annotatedItems,
       currentPage,
