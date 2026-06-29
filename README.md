@@ -1,6 +1,12 @@
 # Form.io contrib components library
 
-This module contains contributed components for use with Form.io. Any code within this library should be considered examples, which may be outdated. While these serve as an example for how components have been extended, it is not intended for use within a runtime application. 
+This module contains contributed components for use with Form.io. Any code within this library should be considered examples, which may be outdated. While these serve as an example for how components have been extended, it is not intended for use within a runtime application.
+
+Official Documentation
+--------------------------
+For the latest documentation, release information, and guides, always refer to the official Form.io Help Documentation available here:
+
+**[https://help.form.io](https://help.form.io/dev/modules#existing-modules)**
 
 ## Installation
 To install this library, do the following.
